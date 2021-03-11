@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "typeorm": "^0.2.31"
+  },
+  "scripts": {
+    "start": "ts-node index.js"
+  }
+}
