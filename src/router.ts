@@ -10,6 +10,12 @@ router.get('/', (req, res) => {
 
 router.get('/news', news.show)
 
+router.get('/news/:id', news.showId)
+
 router.post('/news', news.create)
+
+router.delete('/news', news.deleteAll)
+
+router.delete('/news/:id', news.deleteId)
 
 module.exports = router

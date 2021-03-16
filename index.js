@@ -10,6 +10,6 @@ connection();
 
 app.use(router)
 
-app.listen(3000, () => {
-    console.log("Api running in http://localhost:3000/")
+app.listen(3030, () => {
+    console.log("Api running in http://localhost:3030/")
 })

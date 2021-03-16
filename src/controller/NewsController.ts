@@ -8,14 +8,6 @@ class NewsController {
         console.log(req.body);
         var { title, content } = req.body;
 
-        // const newsRepository = getCustomRepository(NewsRepository);
-
-        // const news = newsRepository.create({
-        //     title,
-        //     content,
-        // })
-        // await newsRepository.save(news)
-
         const news = new News();
         news.title = title;
         news.content = content;
@@ -25,13 +17,36 @@ class NewsController {
 
 
     async show(req: Request, res: Response) {
-        // const newsRepository = getRepository<News>(NewsRepository)
-
-        // const all = await newsRepository.find({ });
 
         const newsFinder = await News.find();
 
         return res.json(newsFinder);
+    }
+
+    async showId(req: Request, res: Response) {
+        const newsId = await News.findOne(req.params.id)
+
+        if(newsId) {
+            return res.json(newsId)
+        }else {
+            return res.status(404).json({"message": "This news no exists"})
+        }
+
+        
+    }
+
+    async deleteAll(req: Request, res: Response) {
+        const getAll = await News.find();
+        await News.remove(getAll);
+
+        return res.json(getAll)
+    }
+
+    async deleteId(req: Request, res: Response) {
+        const getId = await News.findOne(req.params.id)
+        await News.remove(getId)
+
+        return res.json({"message": "News removed sucessfull"})
     }
 }
 
