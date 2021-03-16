@@ -15,6 +15,27 @@ class NewsController {
         return res.status(201).json(news)
     }
 
+    async update(req: Request, res: Response) {
+        const newsId = await News.findOne(req.params.id)
+
+        newsId.title = req.body.title
+        newsId.content = req.body.content
+        await newsId.save()
+
+        return res.json({"message": "News edited sucessfull"})
+    }
+
+    async search(req: Request, res: Response) {
+        let querySearch = req.query.query;
+
+        const result = await News.findOne({ 
+            where: {
+                $all: `${querySearch}`
+            }
+        })
+
+        return res.json(result)
+    }
 
     async show(req: Request, res: Response) {
 

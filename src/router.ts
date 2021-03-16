@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 
 router.get('/news', news.show)
 
+router.get('/news', news.search)
+
 router.get('/news/:id', news.showId)
+
+router.put('/news/:id', news.update)
 
 router.post('/news', news.create)
 
